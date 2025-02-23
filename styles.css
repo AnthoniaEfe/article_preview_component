@@ -18,7 +18,7 @@ body {
 main {
   font-size: 13px;
   font-family: "Manrope";
-  color: hsl(217, 19%, 35%);
+  color: hsl(214, 17%, 51%);
   min-height: 100vh;
   width: 100%;
   max-width: 100%;
@@ -29,12 +29,12 @@ main {
   margin: 5% auto;
 }
 
+/* card styles */
 #card {
   background-color: hsl(0, 0%, 100%);
-  width: 90%;
-  max-width: 800px;
+  width: 85%;
+  padding: 0;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
   border-radius: 10px;
   margin: 10% auto;
@@ -44,61 +44,143 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.75rem;
-  width: auto;
-  gap: 1rem;
+  padding: 2rem;
+  gap: 1.25rem;
   margin: 0;
   width: 100%;
+  height: 100%;
 }
 
 #article-img {
   width: 100%;
+  height: 100%;
+  padding: 0;
 }
 
 #article-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  border-radius: 10px 0px 0px 10px;
+  /* object-position: center; */
+  border-radius: 10px 10px 0px 0px;
 }
+
 #title {
-  line-height: 1rem;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  letter-spacing: 1px;
   margin: 0;
 }
 
 #details {
+  color: hsl(212, 23%, 69%);
+  font-weight: 500;
+  font-size: 0.8rem;
   line-height: 1rem;
+  letter-spacing: 1px;
   margin: 0;
 }
 
-button {
-  text-align: center;
-  text-decoration: none;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  color: white;
-  border: 1px solid hsl(212, 23%, 69%);
+#user-profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 1.25rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    height: 100%;
+  }
+}
+
+#user-img {
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 100%;
+}
+
+#user-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+#user-date {
+  color: hsl(212, 23%, 69%);
+  font-weight: 500;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+/* center svg in button */
+button {
+  width: 2.2rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  border: 1px solid hsl(210, 46%, 95%);
+  background-color: hsl(210, 46%, 95%);
+}
+
+button:active {
+  color: hsl(210, 46%, 95%);
+  border: 1px solid hsl(212, 23%, 69%);
   background-color: hsl(212, 23%, 69%);
 }
 
-button:hover {
-  color: white;
-  border: 1px solid hsl(158, 42%, 18%);
-  background-color: hsl(158, 42%, 18%);
-}
-
-button img {
-  margin-right: 0.5rem;
-}
-
+/* desktop view styles */
 @media (min-width: 768px) {
-  .card {
+  #card {
+    width: 70%;
+    display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 
   #article-img img {
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 0px 0px 10px;
+  }
+
+  #title {
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+  }
+
+  #details {
+    font-size: 1rem;
+    line-height: 1.4rem;
+  }
+
+  #article-desc {
+    gap: 2.5rem;
+  }
+
+  #user-img {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  #user-name {
+    font-size: 1rem;
+  }
+
+  #user-date {
+    font-size: 0.9rem;
   }
 }
