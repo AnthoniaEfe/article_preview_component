@@ -11,44 +11,68 @@
       href="./images/favicon-32x32.png"
     />
     <link rel="stylesheet" href="./styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
     <script defer src="./main.js"></script>
     <title>Article preview component</title>
   </head>
+
   <body>
     <main>
-      <div id="card">
-        <div id="article-img">        
-            <img
-              src="./images/drawers.jpg"
-              alt="Drawers Image"
-            />
+      <article id="card">
+        <div id="article-img">
+          <img src="./images/drawers.jpg" alt="Drawers Image" />
         </div>
 
-       <div id="article-desc"> 
-        <div id="title">Shift the overall look and feel by adding these wonderful touches to
-      furniture in your home </div>
-      <div id="details"> Ever been in a room and felt like something was
-      missing? Perhaps it felt slightly bare and uninviting. I’ve got some
-      simple tips to help you make any room feel complete. </div>
-    
- 
+        <div id="article-desc">
+          <h2 id="title">
+            Shift the overall look and feel by adding these wonderful touches to
+            furniture in your home
+          </h2>
+          <p id="details">
+            Ever been in a room and felt like something was missing? Perhaps it
+            felt slightly bare and uninviting. I’ve got some simple tips to help
+            you make any room feel complete.
+          </p>
+          <div id="author-footer">
+            <div id="author-info">
+              <img
+                id="author-img"
+                src="./images/avatar-michelle.jpg"
+                alt="michelle avatar"
+              />
+              <div>
+                <p id="author-name">Michelle Appleton</p>
+                <p id="author-date">28 Jun 2020</p>
+              </div>
+            </div>
 
-    <div id="user-profile">
-      <div id="user-info">
-      <img id="user-img" src="./images/avatar-michelle.jpg" alt="michelle avatar"/>
-      <div> <p id="user-name">Michelle Appleton</p> 
-       <p id="user-date">28 Jun 2020</p>
-      </div>
-     </div>
-    <button><img src="./images/icon-share.svg"/></button>
-    </div>
+            <div id="share">
+              <div id="socials">
+                <span>share</span>
+                <a href="#" id="facebook"
+                  ><i class="fa-brands fa-square-facebook"></i>
+                </a>
 
-    <div id="social-links">
-      <a href="#" id="facebook"></a>
-      <a href="#" id="twitter"></a>
-      <a href="#" id="pinterest"></a>
-    </div>
-     </div>
+                <a href="#" id="twitter"
+                  ><i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="#" id="pinterest"
+                  ><i class="fa-brands fa-pinterest"></i>
+                </a>
+              </div>
+
+              <button id="share-button">
+                <i class="fa-solid fa-share"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
     </main>
   </body>
 </html>
