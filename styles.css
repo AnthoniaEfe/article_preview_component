@@ -31,9 +31,11 @@ main {
 
 /* card styles */
 #card {
+  position: relative;
   background-color: hsl(0, 0%, 100%);
   width: 85%;
   padding: 0;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   border-radius: 10px;
@@ -52,15 +54,15 @@ main {
 }
 
 #article-img {
-  border-radius: 10px 0 0 10px;
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 #article-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* object-position: center; */
+  object-position: center;
   border-radius: 10px 10px 0px 0px;
 }
 
@@ -82,13 +84,13 @@ main {
 }
 
 #author-footer {
-  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  padding: 1rem 0;
+  padding: 0;
+  padding-top: 2rem;
 }
 
 #author-info {
@@ -97,6 +99,7 @@ main {
   justify-content: left;
   align-items: center;
   gap: 1.25rem;
+  flex-grow: 2;
 
   div {
     display: flex;
@@ -112,24 +115,42 @@ i {
   color: hsl(210, 46%, 95%);
 }
 
-#share-button i {
-  color: hsl(217, 19%, 35%);
-}
-
 #share {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: right;
   align-items: center;
-  width: 100%;
-  height: 100%;
   gap: 2rem;
+}
 
-  position: static;
+#socials {
+  width: 100%;
+  padding: 2rem 1.5rem;
+  border: 1px solid hsl(217, 19%, 35%);
+  border-radius: 0px 0px 10px 10px;
+  background-color: hsl(217, 19%, 35%);
+  position: absolute;
+  bottom: -5.5rem; /* sum padding-top, padding-bottom & content font-size */
+
+  visibility: hidden;
+  transform: translate(0%, 100%) scale(0);
+  transform-origin: bottom;
+  transition: all 0.25s ease;
+  z-index: -1;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+#socials.active {
+  transform: translate(0%, -100%) scale(1);
+  visibility: visible;
   z-index: 1;
 }
 
-#share span {
+#socials span {
   text-transform: uppercase;
   font-size: 1rem;
   font-weight: 350;
@@ -137,35 +158,10 @@ i {
   letter-spacing: 3px;
 }
 
-#socials {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  align-items: center;
-  gap: 1.5rem;
-  width: 100%;
-
-  position: absolute;
-  background-color: hsl(217, 19%, 35%);
-  bottom: 0;
-  left: 0;
-  transform: translateX(0%) translateY(100%);
-  transition: transform 0.3s ease-in-out;
-
-  inset: auto;
-  border-radius: 0;
-  padding: 17px 30px;
-  z-index: -1;
-}
-
-#socials.active {
-  transform: translateX(0%) translateY(-100%);
-  z-index: 1;
-}
-
-/* tooltip styles */
 #share-button {
+  z-index: 3;
   width: 2.2rem;
+  margin: 0 1rem 0 auto;
   aspect-ratio: 1 / 1;
   border-radius: 100%;
   font-size: 1.7rem;
@@ -174,16 +170,21 @@ i {
   border: 1px solid hsl(210, 46%, 95%);
   background-color: hsl(210, 46%, 95%);
 
-  position: relative;
+  position: absolute;
   display: block;
   transition: all 0.25s ease;
 }
 
 #share-button:hover,
-#share-button.active {
+#share-button.active,
+#share-button.active i {
   border: 1px solid hsl(214, 17%, 51%);
   background: hsl(214, 17%, 51%);
   color: hsl(210, 46%, 95%);
+}
+
+#share-button i {
+  color: hsl(217, 19%, 35%);
 }
 
 #author-img {
@@ -212,7 +213,7 @@ i {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
   }
 
   #article-img img {
@@ -227,9 +228,6 @@ i {
   #details {
     font-size: 1rem;
     line-height: 1.4rem;
-  }
-
-  #author-footer {
   }
 
   #article-desc {
@@ -249,64 +247,74 @@ i {
     font-size: 0.9rem;
   }
 
-  #share {
-    position: relative;
-  }
-
-  #share-button {
-    position: relative;
-    background: hsl(210, 46%, 95%);
-    padding: 6px;
-    border-radius: 20px;
-    font-size: 20px;
-    color: hsl(214, 17%, 51%);
-    transition: all 0.25s ease;
-  }
-
-  #share-button:hover,
-  #share-button.active {
-    background: hsl(214, 17%, 51%);
-    color: hsl(210, 46%, 95%);
-  }
-
-  #socials {
-    background: hsl(217, 19%, 35%);
-    position: absolute;
-    bottom: calc(100% + 28px);
-    left: 50%;
-    width: 250px;
-
-    transform: translate(-50%, 0) scale(0);
-    transform-origin: bottom;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding: 1.5rem;
+  /* tool-tip style */
+  /* #socials {
+    width: auto;
+    padding: 1rem 1.5rem;
+    border: 1px solid hsl(217, 19%, 35%);
     border-radius: 10px;
-    box-shadow: 0 5px 20px -5px #0003;
+    background-color: hsl(217, 19%, 35%);
+    position: absolute;
 
     visibility: hidden;
-    transition: transform 0.25s ease, visibility 0.25s ease;
+    transform: translate(-50%, -100%) scale(0);
+    transform-origin: bottom;
+    transition: all 0.25s ease;
+    z-index: -1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 4px 4px 12px rgba(100, 120, 150, 0.2);
   }
 
   #socials.active {
-    transform: translateX(-50%) scale(1);
+    transform: translate(0%, -100%) scale(1);
     visibility: visible;
-  }
+    z-index: 1;
+  } */
 
-  #socials::after {
+  /* #socials::after {
     content: "";
     background: hsl(217, 19%, 35%);
     position: absolute;
-    /* top: 100%;
-    left: 100%; */
-    /* transform: translate(100%, 100%) rotate(45deg); */
-    top: 100%; /* At the bottom of the tooltip */
+
+    top: 100%;
     left: 50%;
-    margin-left: -10px;
-    border-width: 10px;
+    transform: translate(50%, 100%) rotate(45deg);
+    margin-left: 8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: hsl(217, 19%, 35%) transparent transparent transparent;
+  } */
+
+  #socials {
+    width: auto;
+    bottom: 2.5rem;
+    right: 3.1rem;
+    padding: 1rem 1.5rem;
+    transform: translate(-50%, 0%);
+    border: 1px solid hsl(217, 19%, 35%);
+    border-radius: 10px;
+    background-color: hsl(217, 19%, 35%);
+    position: absolute;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 4px 4px 12px rgba(100, 120, 150, 0.25);
+  }
+
+  #socials::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+    border-width: 8px;
     border-style: solid;
     border-color: hsl(217, 19%, 35%) transparent transparent transparent;
   }
